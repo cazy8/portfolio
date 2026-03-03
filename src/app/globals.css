@@ -1,0 +1,422 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #111111;
+  --color-bg-card: #1a1a1a;
+  --color-accent: #00ff88;
+  --color-accent-dim: #00cc6a;
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #a3a3a3;
+  --color-border: #262626;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(0, 255, 136, 0.2);
+  color: var(--color-accent);
+}
+
+/* Glowing text animation */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3),
+                 0 0 10px rgba(0, 255, 136, 0.2),
+                 0 0 20px rgba(0, 255, 136, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5),
+                 0 0 20px rgba(0, 255, 136, 0.3),
+                 0 0 40px rgba(0, 255, 136, 0.2);
+  }
+}
+
+/* Typing cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scan line effect */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* GNOME-style window open */
+@keyframes gnomeWindowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* GNOME-style window close */
+@keyframes gnomeWindowClose {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+}
+
+/* GNOME overview backdrop */
+@keyframes gnomeOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* GNOME app drawer grid items stagger */
+@keyframes gnomeAppItemIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Dock bounce on launch */
+@keyframes dockBounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* Context menu pop-in */
+@keyframes contextMenuIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-gnome-window-open {
+  animation: gnomeWindowOpen 0.25s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+.animate-gnome-overlay-in {
+  animation: gnomeOverlayIn 0.2s ease-out forwards;
+}
+
+.animate-gnome-app-item {
+  animation: gnomeAppItemIn 0.25s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+.animate-dock-bounce {
+  animation: dockBounce 0.4s ease-out;
+}
+
+.animate-context-menu {
+  animation: contextMenuIn 0.15s ease-out forwards;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Noise overlay */
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════ Hero Profile Card (UIverse spicy-rat-83 inspired) ═══════════ */
+.hero-card {
+  width: min(280px, 80vw);
+  aspect-ratio: 1 / 1;
+  background: #0f1a14;
+  position: relative;
+  display: grid;
+  place-content: center;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.36s ease, box-shadow 0.36s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 255, 136, 0.06);
+  will-change: transform, opacity;
+}
+
+.hero-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.08), 0 0 40px rgba(0, 255, 136, 0.04);
+}
+
+/* Rotating border overlay */
+.hero-card-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(0, 255, 136, 0.28);
+  border-radius: 14px;
+  opacity: 0;
+  transform: rotate(8deg);
+  transition: opacity 0.36s ease, transform 0.36s ease;
+}
+
+.hero-card:hover .hero-card-border {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Scan line effect */
+.hero-card-scanline {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.hero-card:hover .hero-card-scanline {
+  opacity: 1;
+}
+
+.hero-card-scanline::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: heroScanline 3s linear infinite;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 136, 0.03) 50%, transparent 100%);
+  will-change: top;
+}
+
+@keyframes heroScanline {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* Name - slides up slightly on hover */
+.hero-card-name {
+  transition: transform 0.32s ease, text-shadow 0.32s ease;
+}
+
+.hero-card:hover .hero-card-name {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.36);
+}
+
+/* Tagline */
+.hero-card-tagline {
+  opacity: 0.8;
+  transition: opacity 0.32s ease;
+}
+
+.hero-card:hover .hero-card-tagline {
+  opacity: 1;
+}
+
+/* Socials - slide up and appear */
+.hero-card-socials {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.32s ease 0.08s;
+}
+
+.hero-card:hover .hero-card-socials {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Bottom text */
+.hero-card-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -18px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(0, 255, 136, 0.42);
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.36s ease-in-out;
+}
+
+.hero-card:hover .hero-card-bottom {
+  bottom: 12px;
+  opacity: 1;
+}
+
+/* Edge glow on hover */
+.hero-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 0.36s ease;
+  background: linear-gradient(90deg, rgba(0, 255, 136, 0) 0%, rgba(0, 255, 136, 0.03) 50%, rgba(0, 255, 136, 0) 100%);
+  animation: heroEdgeGlow 3.2s ease-in-out infinite;
+}
+
+.hero-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes heroEdgeGlow {
+  0%, 100% {
+    background: linear-gradient(90deg, rgba(0,255,136,0) 0%, rgba(0,255,136,0.03) 50%, rgba(0,255,136,0) 100%);
+    opacity: 0;
+  }
+  30% {
+    background: linear-gradient(90deg, rgba(0,255,136,0) 30%, rgba(0,255,136,0.05) 100%);
+    opacity: 1;
+  }
+  70% {
+    background: linear-gradient(90deg, rgba(0,255,136,0) 30%, rgba(0,255,136,0.05) 100%);
+    opacity: 1;
+  }
+  95% {
+    background: linear-gradient(90deg, rgba(0,255,136,0) 60%, rgba(0,255,136,0.03) 100%);
+    opacity: 0;
+  }
+}
+
+/* Reduce hover & motion on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .hero-card {
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(0,255,136,0.04);
+  }
+  .hero-card:hover {
+    transform: none;
+  }
+  .hero-card-scanline,
+  .hero-card::after,
+  .hero-card-border {
+    opacity: 0 !important;
+  }
+}
+
+/* Smaller screens: slightly reduce scanline intensity and shadow */
+@media (max-width: 640px) {
+  .hero-card {
+    border-radius: 12px;
+  }
+  .hero-card-scanline::before {
+    animation-duration: 2.6s;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,255,136,0.02) 50%, transparent 100%);
+  }
+  .hero-card:hover {
+    transform: none;
+    box-shadow: 0 4px 14px rgba(0,255,136,0.04);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-card-scanline::before,
+  .hero-card::after,
+  .animate-fade-in-up,
+  .animate-glow,
+  .animate-blink {
+    animation: none !important;
+  }
+}
